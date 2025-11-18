@@ -69,7 +69,7 @@ class Category
     {
         try {
             //Requête SQL
-            $sql = "SELECT c.id, c.name FROM category AS c";
+            $sql = "SELECT c.id, c.name FROM category AS c ORDER BY c.name";
             //péparation
             $req = $this->connect->prepare($sql);
             //Exécution de la requête

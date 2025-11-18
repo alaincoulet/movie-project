@@ -57,4 +57,11 @@ class CategoryController
         //afficher le template avec render
         return $this->render("add_category","Add category", $data);
     }
+
+    public function showAllCategories()
+    {
+        $categories = $this->categoryModel->findAllCategories();
+        //afficher le template avec render
+        return $this->render("all_categories","Categories", $categories);
+    }
 }

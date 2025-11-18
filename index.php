@@ -24,6 +24,9 @@ switch ($path) {
     case '/category/add':
         $categoryController->addCategory();
         break;
+    case '/categories':
+        $categoryController->showAllCategories();
+        break;
     case '/login':
         echo "login";
         break;
