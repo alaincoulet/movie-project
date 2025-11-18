@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Category;
+use App\Utils\Tools;
 
 class CategoryController
 {
@@ -28,10 +29,32 @@ class CategoryController
 
     public function addCategory()
     {
-        //Ajout en BDD
+        $data = [];
+        //
+        if (isset($_POST["submit"])) {
+            //Tester si le champs name est remplis
+            if (!empty($_POST["name"])) {
+                //nettoyer
+                $_POST["name"] = Tools::sanitize($_POST["name"]);
+                //valider
+                //Création d'un objet categorie
+                $category = new Category($_POST["name"]);
+                //Test si la categorie n'existe pas
+                if (!$this->categoryModel->isCategoryExistsByName($category->getName())) {
+                    //Ajout en BDD
+                    $this->categoryModel->saveCategory($category);
+                    //Message de validation
+                    $data["valid"] = "La categorie a été ajouté en BDD";
+                } 
+                //Sinon si la categorie
+                else {
+                    //Message d'erreur
+                    $data["error"] = "La categorie existe déja en BDD";
+                }
+            }
+        }
 
-        //$this->categoryModel->saveCategory(objet category);
         //afficher le template avec render
-
+        return $this->render("add_category","Add category", $data);
     }
 }

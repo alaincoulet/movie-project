@@ -83,4 +83,28 @@ class Category
         //Retour de la liste des categories
         return $categories;
     }
+
+    public function isCategoryExistsByName(string $name) :bool
+    {
+        try {
+            //Ecrire la requête
+            $sql = "SELECT id FROM category WHERE `name` = ?";
+            //Préparer la requête
+            $req = $this->connect->prepare($sql);
+            //Assigner le paramètre
+            $req->bindParam(1, $name, \PDO::PARAM_STR);
+            //Exécuter la requête
+            $req->execute();
+            //Fetch le resultat
+            $category = $req->fetch(\PDO::FETCH_ASSOC);
+            //Test si la categorie n'existe pas
+            if (empty($category)) {
+                return false;
+            }
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+        return true;
+    } 
 }
