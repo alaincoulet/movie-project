@@ -30,7 +30,7 @@ class CategoryController
     public function addCategory()
     {
         $data = [];
-        //
+        //test si le formulaire
         if (isset($_POST["submit"])) {
             //Tester si le champs name est remplis
             if (!empty($_POST["name"])) {
