@@ -5,7 +5,11 @@ namespace App\Database;
 class Mysql
 {
 
-    public function connectBDD() {
+    /**
+     * Méthode pour se connecter à la BDD Mysql
+     * @return \PDO connexion à la BDD Mysql
+     */
+    public function connectBDD(): \PDO {
 
         return new \PDO('mysql:host=' . DB_SERVER . ';dbname=' . DB_NAME .'',
             DB_USERNAME,

@@ -16,7 +16,11 @@ class HomeController
         include __DIR__ . "/../../template/template_" . $template . ".php";
     }
 
-    public function index()
+    /**
+     * Méthode pour afficher la page d'accueil
+     * @return mixed Retourne le template
+     */
+    public function index(): mixed
     {
         return $this->render("home","accueil");
     }

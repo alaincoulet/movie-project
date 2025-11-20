@@ -28,7 +28,11 @@ class CategoryController
         include __DIR__ . "/../../template/template_" . $template . ".php";
     }
 
-    public function addCategory()
+    /**
+     * Méthode pour ajouter une Catégorie (Category)
+     * @return mixed Retourne le template
+     */
+    public function addCategory(): mixed
     {
         $data = [];
         //test si le formulaire
@@ -41,7 +45,7 @@ class CategoryController
                 //Création d'un objet categorie
                 $category = new Category($_POST["name"]);
                 //Test si la categorie n'existe pas
-                if (!$this->categoryRepository->isCategoryExistsByName($category->getName())) {
+                if (!$this->categoryRepository->isCategoryExistsWithName($category->getName())) {
                     //Ajout en BDD
                     $this->categoryRepository->saveCategory($category);
                     //Message de validation
@@ -59,7 +63,11 @@ class CategoryController
         return $this->render("add_category","Add category", $data);
     }
 
-    public function showAllCategories()
+    /**
+     * Méthode qui affiche la liste des Catégories (Category)
+     * @return mixed Retourne le template
+     */
+    public function showAllCategories(): mixed
     {
         $categories = $this->categoryRepository->findAllCategories();
         //afficher le template avec render

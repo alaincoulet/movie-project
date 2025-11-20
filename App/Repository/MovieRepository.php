@@ -11,6 +11,7 @@ class MovieRepository
     //Attributs
     private \PDO $connect;
 
+    //Constructeur
     public function __construct()
     {
         //Injection de dépendance
@@ -18,6 +19,12 @@ class MovieRepository
     }
 
     //Méthodes
+    /**
+     * Méthode qui ajoute un Film (Movie) en BDD
+     * @param Movie $movie Film a ajouter en BDD
+     * @return void
+     * @throws \Exception erreur SQL
+     */
     public function saveMovie(Movie $movie): void
     {
         try {
@@ -43,7 +50,12 @@ class MovieRepository
         }
     }
 
-    //Méthode qui ajoute les catégories à un Film
+    /**
+     * Méthode qui assigne les Catégories (Category) à un Film en BDD
+     * @param Movie $movie Film contenant les Categories
+     * @return void
+     * @throws \Exception erreur SQL
+     */
     public function saveCategoryToMovie(Movie $movie): void
     {
         try {

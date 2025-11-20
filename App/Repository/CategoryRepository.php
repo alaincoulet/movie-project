@@ -18,7 +18,12 @@ class CategoryRepository
     }
 
     //Méthodes
-    //Ajouter une category
+    /**
+     * Ajouter une Catégorie (Category) en BDD
+     * @param Category $category Category a ajouter en BDD
+     * @return void
+     * @throws \Exception erreur SQL
+     */
     public function saveCategory(Category $category): void
     {
         try {
@@ -35,13 +40,22 @@ class CategoryRepository
         }
     }
     
-    //Afficher une category (par son id)
-    public function findAllCategoryById(int $id): array
+    /**
+     * Méthode qui retourne une Catégorie (Category) de la BDD par son ID
+     * @param int $id id de la Catégorie
+     * @return array<string> $category Catégories 
+     * @throws \Exception erreur SQL
+     */
+    public function findAllCategoryById(int $id): array|false
     {
         return [];
     }
     
-    //Afficher toutes les categories
+    /**
+     * Méthode qui retourne toutes les Catégories (Category) de la BDD
+     * @return array<Category> $categories liste des Catégories 
+     * @throws \Exception erreur SQL
+     */
     public function findAllCategories():array
     {
         try {
@@ -61,8 +75,12 @@ class CategoryRepository
         return $categories;
     }
 
-    //Méthode qui verifie si une categorie existe
-    public function isCategoryExistsByName(string $name) :bool
+    /**
+     * Méthode qui verifie si une Catégorie (Category) existe en BDD
+     * @return bool true si existe/ false si n'existe pas
+     * @throws \Exception erreur SQL
+     */
+    public function isCategoryExistsWithName(string $name) :bool
     {
         try {
             //Ecrire la requête

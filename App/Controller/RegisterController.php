@@ -9,13 +9,17 @@ use App\Utils\Tools;
 
 class RegisterController
 {
+    //Attributs
     private AccountRepository $accountRepository;
 
+    //Constructeur
     public function __construct()
     {
+        //Injection de dépendance
         $this->accountRepository = new AccountRepository();
     }
 
+    //Méthodes
     /**
      * Méthode pour rendre une vue avec un template
      * @param string $template Le nom du template à inclure
@@ -28,8 +32,11 @@ class RegisterController
         include __DIR__ . "/../../template/template_" . $template . ".php";
     }
 
-    //Méthode pour ajouter un compte en BDD
-    public function addAccount()
+    /**
+     * Méthode pour ajouter un Compte Account en BDD
+     * @return void include le template 
+     */
+    public function addAccount(): mixed
     {
         $data = [];
         //Verifier si le formulaire est submit
@@ -46,7 +53,7 @@ class RegisterController
                 //vérifier si les 2 password sont identiques
                 if ($_POST["password"] === $_POST["confirm-password"]) {
                     //vérifier si le compte n'existe pas
-                    if (!$this->accountRepository->isAccountExistsByEmail($_POST["email"])) {
+                    if (!$this->accountRepository->isAccountExistsWithEmail($_POST["email"])) {
                         //Objet Account
                         $account = new Account();
                         $account->setFirstname(Tools::sanitize($_POST["firstname"]));
@@ -82,8 +89,11 @@ class RegisterController
         return $this->render("register_account", "Inscription", $data);
     }
 
-    //Méthode pour se connecter
-    public function login()
+    /**
+     * Méthode pour se connecter
+     * @return void include le template 
+     */
+    public function login(): mixed
     {
         $data = [];
         //vérifier si le formulaire est soumis
@@ -128,7 +138,11 @@ class RegisterController
         return $this->render("login", "Connexion", $data);
     }
 
-    public function logout()
+    /**
+     * Méthode pour se déconnecter (détruit la session)
+     * @return void
+     */
+    public function logout(): void
     {
         session_destroy();
         header('Location: /');

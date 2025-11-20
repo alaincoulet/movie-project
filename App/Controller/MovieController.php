@@ -17,12 +17,13 @@ class MovieController
     //Constructeur
     public function __construct()
     {
+        //Injection des dépendances
         $this->movieRepository = new MovieRepository();
         $this->categoryRepository = new CategoryRepository();
     }
 
     //Méthodes
-        /**
+    /**
      * Méthode pour rendre une vue avec un template
      * @param string $template Le nom du template à inclure
      * @param string|null $title Le titre de la page
@@ -34,8 +35,12 @@ class MovieController
         include __DIR__ . "/../../template/template_" . $template . ".php";
     }
 
-    //Méthode pour ajouter un film (Movie)
-    public function addMovie()
+    
+    /**
+     * Méthode pour ajouter un film (Movie)
+     * @return mixed Retourne le template
+     */
+    public function addMovie(): mixed
     {
         //Tableau avec les messages pour la vue
         $data = [];
