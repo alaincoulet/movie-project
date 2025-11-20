@@ -29,6 +29,8 @@
             <fieldset>
             <input type="submit" value="Ajouter" name="submit">
         </form>
+        <p><?= $data["error"] ?? "" ?></p>
+        <p><?= $data["valid"] ?? "" ?></p>
     </main>
 </body>
 

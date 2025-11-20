@@ -34,6 +34,23 @@ class MovieController
     //Méthode pour ajouter un film (Movie)
     public function addMovie()
     {
-        return $this->render("add_movie", "Add Category");
+        //Tableau avec les messages pour la vue
+        $data = [];
+        //Tester si le formulaire est soumis
+        if (isset($_POST["submit"])) {
+            if (
+                !empty($_POST["title"]) &&
+                !empty($_POST["description"]) &&
+                !empty($_POST["publish_at"])
+                ) {
+
+            }
+            //Afficher un message d'erreur
+            else {
+                $data["error"] = "Veuillez renseigner les champs du formulaire";
+            }
+        }
+
+        return $this->render("add_movie", "Add Category", $data);
     }
 }
