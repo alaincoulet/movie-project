@@ -4,7 +4,7 @@
             <li><strong>Movies Project</strong></li>
         </ul>
         <ul>
-            <li><strong><a href="/">Accueil</a></strong></li>
+            <li><strong><a href="/" data-tooltip="Accueil">Accueil</a></strong></li>
             <?php if (isset($_SESSION["connected"]) && $_SESSION["connected"] == true) : ?>
                 <li>
                     <details class="dropdown">
@@ -28,10 +28,10 @@
                         </ul>
                     </details>
                 </li>
-                <li><a href="/logout">Déconnexion</a></li>
+                <li><a href="/logout" data-tooltip="Déconnexion">Déconnexion</a></li>
             <?php else : ?>
-                <li><a href="/login">Connexion</a></li>
-                <li><a href="/register">Inscription</a></li>
+                <li><a href="/login" data-tooltip="Connexion">Connexion</a></li>
+                <li><a href="/register" data-tooltip="Inscription">Inscription</a></li>
             <?php endif ?>
         </ul>
     </nav>

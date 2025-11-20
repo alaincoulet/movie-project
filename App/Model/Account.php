@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Model\Grant;
-use App\Database\Mysql;
+use App\Model\Movie;
 
 class Account
 {
@@ -16,7 +16,6 @@ class Account
     private ?Grant $grant;
     private array $movies;
     
-
     //Constructeur
     public function __construct()
     {
@@ -84,4 +83,19 @@ class Account
         $this->grant = $grant;
     }
 
+    public function getMovies(): array
+    {
+        return $this->movies;
+    }
+
+    public function addCategory(Movie $movie): void
+    {
+        $this->movies[] = $movie;
+    }
+
+    public function removeCategory(Movie $movie): void
+    {
+        unset($this->movies[array_search($movie, $this->movies)]);
+        sort($this->movies);
+    }
 }

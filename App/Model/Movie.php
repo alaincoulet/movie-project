@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use App\Model\Category;
-use DateTimeImmutable;
 
 class Movie
 {
