@@ -47,6 +47,9 @@ switch ($path) {
     case '/movie/add':
         $movieController->addMovie();
         break;
+    case '/movies':
+        $movieController->showAllMovies();
+        break;
     default:
         $errorController->error404();
         break;

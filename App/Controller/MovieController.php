@@ -92,4 +92,17 @@ class MovieController
         //Afficher la vue
         return $this->render("add_movie", "Add Category", $data);
     }
+
+    /**
+     * Méthode pour afficher tous les films
+     * @return mixed Retourne le template 
+     */
+    public function showAllMovies(): mixed
+    {
+        //Récupération de la liste des films
+        $movies = $this->movieRepository->findAllMovies();
+        $data = [];
+        $data["movies"] = $movies;
+        return $this->render("all_movies", "Liste des Films", $data);
+    }
 }

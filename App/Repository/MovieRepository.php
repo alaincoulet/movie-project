@@ -77,4 +77,29 @@ class MovieRepository
             echo $e->getMessage();
         }
     }
+
+    /**
+     * Méthode qui retourne un tableau de tous les films (Movie)
+     * @return array<Movie> $movies
+     * @throws \Exception Erreur SQL
+     */
+    public function findAllMovies(): array
+    {
+        try {
+            //Requête SQL
+            $sql = "SELECT m.id, m.title, m.`description`, m.publish_at, 
+            GROUP_CONCAT(c.`name`) AS categories FROM movie AS m 
+            LEFT JOIN movie_category AS mv ON m.id = mv.id_movie 
+            LEFT JOIN category AS c ON mv.id_category = c.id GROUP BY m.id";
+            //Préparer la requête SQL
+            $req = $this->connect->prepare($sql);
+            //Exécuter la requête
+            $req->execute();
+            //Fetch de tous les enregistrements
+            $movies = $req->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+        return $movies;
+    }
 }
